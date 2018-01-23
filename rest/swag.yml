@@ -34,7 +34,7 @@ paths:
           schema:
             $ref: '#/definitions/Exception'
 
-    post:
+    put:
       tags:
       - User
       summary: Create user
@@ -58,7 +58,7 @@ paths:
           schema:
             $ref: '#/definitions/Exception'
 
-    put:
+    patch:
       tags:
       - User
       summary: Update user
@@ -131,10 +131,10 @@ paths:
           schema:
             $ref: '#/definitions/Exception'
 
-    post:
+    put:
       tags:
       - Message
-      summary: Create new message
+      summary: Create message
       consumes:
       - application/x-www-form-urlencoded
       produces:
@@ -178,7 +178,7 @@ paths:
           schema:
             $ref: '#/definitions/Exception'
 
-    post:
+    put:
       tags:
       - Room
       summary: Create chatroom
