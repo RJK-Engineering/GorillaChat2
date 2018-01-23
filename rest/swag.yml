@@ -1,0 +1,264 @@
+swagger: '2.0'
+info:
+  description: |
+    GorillaChat - Exercise number two for gorilla bootcamp.
+  version: 1.0.0
+  title: GorillaChat
+
+paths:
+
+#############################################################################
+# User
+#############################################################################
+
+  /user.php:
+    get:
+      tags:
+      - User
+      summary: Get user
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: id
+        description: User id
+        required: true
+        type: integer
+      responses:
+        200:
+          description: Operation successful
+          schema:
+            $ref: '#/definitions/User'
+        400:
+          description: Operation failed
+          schema:
+            $ref: '#/definitions/Exception'
+
+    post:
+      tags:
+      - User
+      summary: Create user
+      consumes:
+      - application/x-www-form-urlencoded
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/User'
+      responses:
+        200:
+          description: Operation successful, user object is returned containing new id
+          schema:
+            $ref: '#/definitions/User'
+        400:
+          description: Operation failed
+          schema:
+            $ref: '#/definitions/Exception'
+
+    put:
+      tags:
+      - User
+      summary: Update user
+      consumes:
+      - application/x-www-form-urlencoded
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/User'
+      responses:
+        200:
+          description: Operation successful, user object is returned
+          schema:
+            $ref: '#/definitions/User'
+        400:
+          description: Operation failed
+          schema:
+            $ref: '#/definitions/Exception'
+
+    delete:
+      tags:
+      - User
+      summary: Delete user
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: id
+        description: User id
+        required: true
+        type: integer
+      responses:
+        200:
+          description: Operation successful
+        400:
+          description: Operation failed
+          schema:
+            $ref: '#/definitions/Exception'
+
+#############################################################################
+# Message
+#############################################################################
+
+  /message.php:
+    get:
+      tags:
+      - Message
+      summary: Get messages
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: lastid
+        description: Id of last message recieved, get all messages with an id higher than lastid
+        required: true
+        type: integer
+      responses:
+        200:
+          description: Operation successful
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Message'
+        400:
+          description: Operation failed
+          schema:
+            $ref: '#/definitions/Exception'
+
+    post:
+      tags:
+      - Message
+      summary: Create new message
+      consumes:
+      - application/x-www-form-urlencoded
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/Message'
+      responses:
+        200:
+          description: Operation successful, message object is returned containing new id
+          schema:
+            $ref: '#/definitions/Message'
+        400:
+          description: Operation failed
+          schema:
+            $ref: '#/definitions/Exception'
+
+#############################################################################
+# Room
+#############################################################################
+
+  /room.php:
+    get:
+      tags:
+      - Room
+      summary: Get all chatrooms
+      produces:
+      - application/json
+      responses:
+        200:
+          description: Operation successful
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Room'
+        400:
+          description: Operation failed
+          schema:
+            $ref: '#/definitions/Exception'
+
+    post:
+      tags:
+      - Room
+      summary: Create chatroom
+      consumes:
+      - application/x-www-form-urlencoded
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/Room'
+      responses:
+        200:
+          description: Operation successful
+          schema:
+            $ref: '#/definitions/Room'
+        400:
+          description: Operation failed
+          schema:
+            $ref: '#/definitions/Exception'
+
+    delete:
+      tags:
+      - Room
+      summary: Delete chatroom
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: name
+        description: Chatroom name
+        required: true
+        type: string
+      responses:
+        200:
+          description: Operation successful
+        400:
+          description: Operation failed
+          schema:
+            $ref: '#/definitions/Exception'
+
+#############################################################################
+# Objects
+#############################################################################
+
+definitions:
+  Message:
+    type: object
+    properties:
+      id:
+        type: integer
+      userid:
+        type: integer
+      room:
+        type: string
+        description: Message will only be visible in this chatroom
+      value:
+        type: string
+
+  User:
+    type: object
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+        description: Name visible in the chat
+      email:
+        type: string
+
+  Room:
+    type: object
+    properties:
+      name:
+        type: string
+
+  Exception:
+    type: object
+    properties:
+      error:
+        type: string
