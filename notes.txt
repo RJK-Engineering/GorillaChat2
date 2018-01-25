@@ -1,0 +1,34 @@
+Action          CRUD     HTTP method
+add object    = Create = POST
+get object    = Read   = GET
+update object = Update = PUT
+delete object = Delete = DELETE
+
+-----------------------------------------
+User: CRUD
+Message: CR(list)
+Room: CD
+Exception: -
+
+1 create user
+2 read user
+3 update user
+4 create room
+5 create message in room (last n messages)
+6 read list of most recent messages in the chatroom
+7 delete room
+8 delete user
+
+additional:
+- list of all users
+- list of all rooms
+
+-----------------------------------------
+Backend requirement: newer messages get higher ids
+-----------------------------------------
+- Configure webserver (Apache)
+   - rewrite engine
+
+-----------------------------------------
+Post is defined as a non-idempotent method. This means that subsequent calls of the same Post method will result in different server states. Get, Put, and Delete, are idempotent
+
