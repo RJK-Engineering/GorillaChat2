@@ -1,0 +1,79 @@
+swagger: '2.0'
+info:
+  description: |
+    GorillaChat - Exercise number two for gorilla bootcamp.
+  version: 1.0.0
+  title: GorillaChat
+
+paths:
+
+  /api.php:
+    get:
+      tags:
+      - Message
+      summary: Get messages
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: minimumid
+        description: Get all messages with an id higher than or equal to minimumid
+        required: true
+        type: integer
+      - in: query
+        name: mykey
+        type: string
+      responses:
+        200:
+          description: Operation successful
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Message'
+        400:
+          description: Operation failed
+
+    put:
+      tags:
+      - Message
+      summary: Create message
+      consumes:
+      - application/x-www-form-urlencoded
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/Message'
+      responses:
+        200:
+          description: Operation successful, returns new id
+          schema:
+            type: integer
+        400:
+          description: Operation failed
+
+#############################################################################
+# Objects
+#############################################################################
+
+definitions:
+  Message:
+    type: object
+    properties:
+      id:
+        type: integer
+      mykey:
+        type: string
+      value:
+        type: string
+
+# Added by API Auto Mocking Plugin
+host: virtserver.swaggerhub.com
+# basePath: /RJK-Gorilla/GorillaChat2/1.0.0
+schemes:
+ - https
+# Added by API Auto Mocking Plugin
+basePath: /RJK-Gorilla/GorillaChat1/1.0.0
