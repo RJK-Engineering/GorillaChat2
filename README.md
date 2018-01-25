@@ -38,6 +38,14 @@
 * Documentation in README file in GitHub
 * Live Demo on a Webserver
 
-# RESTfull API
+# RESTful API
 
-* https://app.swaggerhub.com/apis/RJK-Gorilla/GorillaChat2/1.0.0
+* https://app.swaggerhub.com/apis/RJK-Gorilla/GorillaChat1/1.0.0 (groepsafspraak)
+* https://app.swaggerhub.com/apis/RJK-Gorilla/GorillaChat2/1.0.0 (een wat uitgebreidere, niet geimplementeerd)
+
+# About REST
+
+* http://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm
+* https://stackoverflow.com/questions/4573305/rest-api-why-use-put-delete-post-get
+* https://stackoverflow.com/questions/27941207/http-protocols-put-and-delete-and-their-usage-in-php
+
