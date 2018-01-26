@@ -40,7 +40,7 @@ function GetMessages($data) {
 function WriteMessage($message) {
     global $db;
     $res = $db->writeMessage($message['mykey'], $message['value']);
-    echo json_encode($res);
+    echo json_encode($res, JSON_NUMERIC_CHECK);
 }
 
 function Error() {
