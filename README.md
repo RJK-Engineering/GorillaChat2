@@ -38,6 +38,12 @@
 * Documentation in README file in GitHub
 * Live Demo on a Webserver
 
+# Implementation details
+
+* Using XMLHttpRequest because MooTools' Request does not support PUT requests
+* Using ChatDb class
+* Separate chatview.js containing view functionality
+
 # RESTful API
 
 * https://app.swaggerhub.com/apis/RJK-Gorilla/GorillaChat1/1.0.0 (groepsafspraak)
