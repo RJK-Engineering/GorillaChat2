@@ -1,6 +1,9 @@
 // MooTools domready function
 window.addEvent('domready', function() {
     AddEvents();
+    SetUsername('Anonymous');
+    // schedule first poll
+    setTimeout(GetMessages, pollingInterval);
 });
 
 /* CONFIGURATION */
@@ -11,6 +14,7 @@ var defaultListSize = 10;
 function AddEvents() {
     $$('#mykey').addEvents({
         change: function() {
+            SetUsername(this.value);
         }
     });
     $$('#value').addEvents({
@@ -39,6 +43,33 @@ function SendMessage(message) {
 
     DisplayMessage(userName, message);
 }
+
+function GetMessages() {
+    getRequest.open("GET", "api.php?minimumid=" + minimumId, true);
+    getRequest.send();
+
+    // schedule next poll
+    // setTimeout(GetMessages, pollingInterval);
+}
+
+function SetUsername(name) {
+    if (! name) {
+        DisplaySystemMessage("No name provided", 'error');
+        return;
+    }
+    userName = name;
+    $$('#mykey').set('value', userName);
+    SendMessage('has entered the chat');
+}
+
+/* Setup XMLHttpRequest objects */
+
+var getRequest = new XMLHttpRequest();
+getRequest.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        minimumId = this.responseText;
+    }
+};
 
 var putRequest = new XMLHttpRequest();
 putRequest.onreadystatechange = function() {
