@@ -37,7 +37,7 @@ function SendMessage(message) {
         return;
     }
 
-    putRequest.open("PUT", "api.php", true);
+    putRequest.open("PUT", apiUrl, true);
     putRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     putRequest.send("id=0&mykey=" + userName + "&value=" + message);
 
@@ -45,7 +45,7 @@ function SendMessage(message) {
 }
 
 function GetMessages() {
-    getRequest.open("GET", "api.php?minimumid=" + minimumId, true);
+    getRequest.open("GET", apiUrl + "?minimumid=" + minimumId, true);
     getRequest.send();
 
     // schedule next poll
