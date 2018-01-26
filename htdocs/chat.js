@@ -9,7 +9,6 @@ window.addEvent('domready', function() {
 /* CONFIGURATION */
 var apiUrl = 'api.php';
 var pollingInterval = 2000; // delay (in ms) before polling for next message
-var defaultListSize = 10;
 
 function AddEvents() {
     $$('#mykey').addEvents({
