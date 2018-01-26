@@ -6,6 +6,11 @@ window.addEvent('domready', function() {
     setTimeout(GetMessages, pollingInterval);
 });
 
+// MooTools beforeunload function
+window.addEvent('beforeunload', function() {
+    SendMessage('has left the chat');
+});
+
 /* CONFIGURATION */
 var apiUrl = 'api.php';
 var pollingInterval = 2000; // delay (in ms) before polling for next message

@@ -44,6 +44,10 @@
 * Using ChatDb class
 * Separate chatview.js containing view functionality
 
+# Additional features
+
+* Sends "[user] has left the chat" message when closing the page
+
 # RESTful API
 
 * https://app.swaggerhub.com/apis/RJK-Gorilla/GorillaChat1/1.0.0 (groepsafspraak)
