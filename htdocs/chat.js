@@ -29,7 +29,7 @@ function AddEvents() {
 }
 
 var minimumId = 0;
-var userName = 'sdf';
+var userName;
 
 function SendMessage(message) {
     if (! message) {
@@ -49,7 +49,7 @@ function GetMessages() {
     getRequest.send();
 
     // schedule next poll
-    // setTimeout(GetMessages, pollingInterval);
+    setTimeout(GetMessages, pollingInterval);
 }
 
 function SetUsername(name) {
@@ -67,13 +67,20 @@ function SetUsername(name) {
 var getRequest = new XMLHttpRequest();
 getRequest.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
-        minimumId = this.responseText;
+        console.log (this.responseText);
+        var list = JSON.parse(this.responseText);
+        if (list.length > 0) {
+            list.each( function (message) {
+                DisplayMessage(message.mykey, message.value);
+            });
+            minimumId = list[list.length - 1].id + 1;
+        }
     }
 };
 
 var putRequest = new XMLHttpRequest();
 putRequest.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
-        alert('PUT: ' + this.responseText);
+        minimumId = JSON.parse(this.responseText) + 1;
     }
 };
