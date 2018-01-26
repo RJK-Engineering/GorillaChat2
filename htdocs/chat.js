@@ -8,24 +8,41 @@ var apiUrl = 'api.php';
 var pollingInterval = 2000; // delay (in ms) before polling for next message
 var defaultListSize = 10;
 
-var xhttp = new XMLHttpRequest();
-xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-        alert(this.responseText);
-    }
-};
-
 function AddEvents() {
     $$('#mykey').addEvents({
         change: function() {
-            xhttp.open("GET", "api.php", true);
-            xhttp.send();
         }
     });
     $$('#value').addEvents({
-        change: function() {
-            xhttp.open("PUT", "api.php", true);
-            xhttp.send();
+        keyup: function(e) {
+            if (e.code == 13) {
+                var message = $$('#value').get('value');
+                SendMessage(message);
+                $$('#value').set('value', '');
+            }
         }
     });
 }
+
+var minimumId = 0;
+var userName = 'sdf';
+
+function SendMessage(message) {
+    if (! message) {
+        DisplaySystemMessage("You didn't type anything!", 'warning');
+        return;
+    }
+
+    putRequest.open("PUT", "api.php", true);
+    putRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    putRequest.send("id=0&mykey=" + userName + "&value=" + message);
+
+    DisplayMessage(userName, message);
+}
+
+var putRequest = new XMLHttpRequest();
+putRequest.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        alert('PUT: ' + this.responseText);
+    }
+};
