@@ -47,6 +47,7 @@
 # Additional features
 
 * Sends "[user] has left the chat" message when closing the page
+* Attempt at using CSS theme, I don't understand, need some help
 
 # RESTful API
 
